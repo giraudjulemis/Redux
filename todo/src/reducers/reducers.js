@@ -6,16 +6,7 @@ const initialState = {
   todos: []
 }
 
-visibilityFilter = (state = SHOW_ALL, action) => {
-  switch (action.type) {
-    case SET_VISIBILITY_FILTER:
-      return action.filter;
-    default:
-      return state;
-  }
-}
-
-todos = (state = [], action) {
+todos = (state = [], action) => {
   switch (action.type) {
     case ADD_TODO:
       return [...state, { text: action.text, completed: false}]
@@ -33,19 +24,18 @@ todos = (state = [], action) {
   }
 }
 
-todoApp = (state = initialState, action) => {
+visibilityFilter = (state = SHOW_ALL, action) => {
   switch (action.type) {
     case SET_VISIBILITY_FILTER:
-      return { ...state, visibilityFilter: action.filter };
-    case ADD_TODO:
-      return Object.assign({}, state, {
-        todos: todos(state.todos, action)
-      });
-    case TOGGLE_TODO:
-      return Object.assign({}, state, {
-        todos: todos(state.todos, action)
-      });
+      return action.filter;
     default:
-        return state;
+      return state;
   }
+}
+
+todoApp = (state = initialState, action) => {
+  return {
+    visibilityFilter: visibilityFilter(state.visibilityFilter, action,
+    todos: todos(state.todos, action))
+  };
 }
