@@ -1,21 +1,21 @@
-const ADD_TODO = 'ADD_TODO';
-const TOGGLE_TODO = 'TOGGLE_TODO';
-const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER';
+export const ADD_TODO = 'ADD_TODO';
+export const TOGGLE_TODO = 'TOGGLE_TODO';
+export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER';
 
-const VisibilityFilters = {
+export const VisibilityFilters = {
   SHOW_ALL: 'SHOW_ALL',
   SHOW_COMPLETED: 'SHOW_COMPLETED',
   SHOW_ACTIVE: 'SHOW_ACTIVE'
 }
 
-addTodo = (text) => {
+export addTodo = (text) => {
   return { type: ADD_TODO, text };
 }
 
-toggleTodo = (index) => {
+export toggleTodo = (index) => {
   return { type: TOGGLE_TODO, index };
 }
 
-setVisibilityFilter = (filter) => {
+export setVisibilityFilter = (filter) => {
   return { type: SET_VISIBILITY_FILTER, filter };
 }
