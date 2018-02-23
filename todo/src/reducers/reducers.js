@@ -12,10 +12,36 @@ const todoApp = (state = initialState, action) => {
       //   visibilityFilter: action.filter
       // });
       return { ...state, visibilityFilter: action.filter };
+    case ADD_TODO:
+      // return Object.assign({}, state, {
+      //   todos: [
+      //     ...state.todos,
+      //     {
+      //       text: action.text,
+      //       completed: false
+      //     }
+      //   ]
+      // });
+      return {
+        ...state,
+        todos: [
+          ...state.todos, { text: action.text, completed: false }
+        ]
+      };
+    case TOGGLE_TODO:
+      return Object.assign({}, state, {
+        todos: state.todos.map((todo, index) => {
+          if (index === action.index) {
+            return Object.assign({}, todo, {
+              completed: !todo.completed
+            })
+          }
+          return todo;
+        })
+      });
     default:
       return state;
   }
-  return state;
 };
 
 export default todoApp;
